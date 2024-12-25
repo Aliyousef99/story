@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sticky header -->
+    <header>The Story</header>
+
+    <!-- Story container -->
+    <div id="story-container">
+        <div class="story-page">
+            <p class="story-section">It begins with a whisper. A voice carried on the winds of an ancient forest, faint and ethereal, calling out your name. You don’t remember how you arrived at the edge of the woods, but something compels you to step forward.</p>
+            <p class="story-section">The air grows colder as you walk deeper. Shadows stretch and twist among the gnarled trees, and the faint sound of footsteps echoes behind you, though you see no one when you turn around.</p>
+        </div>
+        <div class="story-page">
+            <p class="story-section">A faint glow emerges ahead—a lantern hanging from a crooked tree branch. Beneath it, a parchment pinned to the bark reads: “Seek the lantern’s light, and the truth shall follow.” The ink is fresh, the handwriting eerily familiar.</p>
+            <p class="story-section">The path splits. To the left, a narrow trail leads into darkness. To the right, faint moonlight glimmers on a shallow stream. A sense of dread and urgency fills your chest as you choose your path, but the lantern flickers, and the choice is yours alone.</p>
+        </div>
+        <div class="story-page">
+            <p class="story-section">As you proceed, whispers grow louder, forming words you cannot fully comprehend. They speak of secrets buried long ago and truths hidden in the shadows. The voice seems to know you, to recognize your innermost thoughts.</p>
+            <p class="story-section">Suddenly, the ground beneath you trembles. A figure emerges from the mist—cloaked, faceless, and holding an object wrapped in silk. It gestures for you to come closer. “The truth you seek lies within,” it whispers, placing the object at your feet before vanishing.</p>
+        </div>
+        <div class="story-page">
+            <p class="story-section">You unwrap the silk to reveal an ancient key, engraved with symbols you don’t recognize. The whispers fade, replaced by an overwhelming silence. Only the key remains, cold and heavy in your hand.</p>
+            <p class="story-section">Ahead, a door appears where none stood before. It is immense, carved into the stone, and marked with the same symbols as the key. You feel the weight of the decision pressing on you. Will you unlock the door and uncover the truth, or turn back and leave the mystery unsolved?</p>
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <button id="previous-button" class="big-button" onclick="showPreviousPage()" style="display: none;">← Previous</button>
+    <button id="next-button" class="big-button" onclick="showNextPage()">Next →</button>
+
+    <script>
+        const pages = document.querySelectorAll('.story-page');
+        const nextButton = document.getElementById('next-button');
+        const previousButton = document.getElementById('previous-button');
+        let currentPage = 0;
+
+        // Initially hide all pages except the first
+        pages.forEach((page, index) => {
+            if (index !== 0) page.style.display = 'none';
+        });
+
+        function showNextPage() {
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].style.display = 'none';
+                currentPage++;
+                pages[currentPage].style.display = 'block';
+            }
+
+            // Show the Previous button if we move to the second page or beyond
+            if (currentPage > 0) {
+                previousButton.style.display = 'block';
+            }
+
+            // Change Next button to Finish Reading on the last page
+            if (currentPage === pages.length - 1) {
+                nextButton.textContent = "Finish Reading";
+                nextButton.onclick = () => {
+                    window.location.href = "truth.html";
+                };
+            }
+        }
+
+        function showPreviousPage() {
+            if (currentPage > 0) {
+                pages[currentPage].style.display = 'none';
+                currentPage--;
+                pages[currentPage].style.display = 'block';
+            }
+
+            // Hide the Previous button on the first page
+            if (currentPage === 0) {
+                previousButton.style.display = 'none';
+            }
+
+            // Reset Next button back to Next → if we're not on the last page
+            if (currentPage < pages.length - 1) {
+                nextButton.textContent = "Next →";
+                nextButton.onclick = showNextPage;
+            }
+        }
+    </script>
+</body>
+</html>

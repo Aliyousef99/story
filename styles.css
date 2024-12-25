@@ -1,0 +1,240 @@
+/* General body styling */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle at center, #1e1e1e, #000);
+    color: #e0e0e0;
+    text-shadow: 0 0 5px #e0e0e0, 0 0 10px #e0e0e0;
+}
+
+/* Index page styles */
+/* ------------------- */
+
+/* Centered container for the index page */
+.index-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: radial-gradient(circle, #2c2c2c, #1a1a1a);
+}
+
+/* Title styling for the index page */
+.index-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+}
+
+/* Start button styling for the index page */
+.start-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: 2px solid #ff5722;
+    background: transparent;
+    color: #ff5722;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+    color: #ffffff;
+}
+
+/* Story page styles */
+/* ------------------- */
+
+/* Sticky header for story and truth pages */
+header {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    color: #ff5722;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Story container styling */
+#story-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    line-height: 1.8;
+}
+/* Previous button styling */
+#previous-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* Positioned at the bottom-left corner */
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: 2px solid #ff5722;
+    background: transparent;
+    color: #ff5722;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+    z-index: 1000; /* Keeps it above other content */
+}
+
+#previous-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+    color: #ffffff;
+}
+
+/* Next button styling */
+#next-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Positioned at the bottom-right corner */
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    border: 2px solid #ff5722;
+    background: transparent;
+    color: #ff5722;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+    z-index: 1000; /* Keeps it above other content */
+}
+
+#next-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+    color: #ffffff;
+}
+
+/* Truth container styling */
+#truth-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Truth title styling */
+.truth-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #ff5722;
+    text-shadow: 0 0 10px #ff5722, 0 0 20px #ffffff;
+}
+
+/* Truth options */
+.truth-options {
+    margin-top: 20px;
+}
+
+/* Modal styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background: #1e1e1e;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Shared button styles */
+.big-button {
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    margin: 10px;
+    border: 2px solid #ff5722;
+    background: transparent;
+    color: #ff5722;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+}
+
+.big-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+    color: #ffffff;
+}
+
+/* Go back button styling */
+#back-to-story {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* Positioned at the bottom-left corner */
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 2px solid #ff5722;
+    background: transparent;
+    color: #ff5722;
+    cursor: pointer;
+    border-radius: 8px;
+    text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722;
+    transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+    z-index: 1000; /* Ensures it stays above other content */
+}
+
+#back-to-story:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+    color: #ffffff;
+}
+
+
+/* Video modal styling */
+#video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+    z-index: 1001;
+}
+
+#video-modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#video-modal .modal-content {
+    background: #1e1e1e;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}

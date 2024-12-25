@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Truth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sticky header -->
+    <header>The Truth</header>
+
+    <!-- Truth container -->
+    <div id="truth-container">
+        <h1 class="truth-title">What do you believe?</h1>
+        <div class="truth-options">
+            <button class="big-button" onclick="chooseOption('real')">This is Real</button>
+            <button class="big-button" onclick="chooseOption('ai')">This is AI</button>
+        </div>
+    </div>
+
+    <!-- Go back button -->
+    <button id="back-to-story" onclick="goBackToStory()">Go back to the story</button>
+
+    <!-- Confirmation modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h2>Are you sure?</h2>
+            <div class="modal-buttons">
+                <button class="big-button" onclick="confirmChoice('yes')">Yes</button>
+                <button class="big-button" onclick="confirmChoice('no')">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video modal -->
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <iframe id="video-frame" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <button class="big-button" onclick="closeVideo()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedOption = null;
+
+        // Handle option selection
+        function chooseOption(option) {
+            selectedOption = option;
+            const modal = document.getElementById('confirmation-modal');
+            modal.classList.add('show');
+        }
+
+        // Handle confirmation
+        function confirmChoice(response) {
+            const modal = document.getElementById('confirmation-modal');
+            modal.classList.remove('show');
+
+            if (response === 'no') {
+                selectedOption = null; // Reset selection
+            } else if (response === 'yes') {
+                if (selectedOption === 'real') {
+                    playVideo("https://www.youtube.com/embed/17KmNrG9pE4?autoplay=1"); // Play the "This is Real" video
+                } else if (selectedOption === 'ai') {
+                    playVideo("https://www.youtube.com/embed/iCMcSx1as3c?autoplay=1"); // Play the "This is AI" video
+                }
+            }
+        }
+
+        // Play the video
+        function playVideo(videoUrl) {
+            const videoModal = document.getElementById('video-modal');
+            const videoFrame = document.getElementById('video-frame');
+            videoFrame.src = videoUrl; // Set the video URL
+            videoModal.classList.add('show');
+        }
+
+        // Close the video modal
+        function closeVideo() {
+            const videoModal = document.getElementById('video-modal');
+            const videoFrame = document.getElementById('video-frame');
+            videoFrame.src = ""; // Stop the video
+            videoModal.classList.remove('show');
+        }
+
+        // Go back to the story
+        function goBackToStory() {
+            window.location.href = "story.html";
+        }
+    </script>
+</body>
+</html>
