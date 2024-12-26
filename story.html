@@ -7,43 +7,67 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Sticky header -->
-    <header>The Story</header>
-
-    <!-- Story container -->
+    <header>The Whispering Path</header>
     <div id="story-container">
+        <!-- Story content -->
         <div class="story-page">
-            <p class="story-section">It begins with a whisper. A voice carried on the winds of an ancient forest, faint and ethereal, calling out your name. You don’t remember how you arrived at the edge of the woods, but something compels you to step forward.</p>
-            <p class="story-section">The air grows colder as you walk deeper. Shadows stretch and twist among the gnarled trees, and the faint sound of footsteps echoes behind you, though you see no one when you turn around.</p>
+            <p class="story-section">
+                It was said that no one ever walked the Whispering Path without returning changed. The narrow trail wound through an ancient forest, 
+                its entrance marked by a crumbling stone archway inscribed with symbols no one could decipher. The villagers, wary of the path’s mysteries, 
+                rarely spoke of it, except in hushed tones. But for Alina, the path was a challenge, a call she could no longer ignore. On a brisk autumn morning, 
+                she stood at its entrance, her breath misting in the crisp air, and stepped into the shadows of the towering oaks.
+            </p>
+            <p class="story-section">
+                The air grows colder as you walk deeper. Shadows stretch and twist among the gnarled trees, 
+                and the faint sound of footsteps echoes behind you, though you see no one when you turn around.
+            </p>
         </div>
-        <div class="story-page">
-            <p class="story-section">A faint glow emerges ahead—a lantern hanging from a crooked tree branch. Beneath it, a parchment pinned to the bark reads: “Seek the lantern’s light, and the truth shall follow.” The ink is fresh, the handwriting eerily familiar.</p>
-            <p class="story-section">The path splits. To the left, a narrow trail leads into darkness. To the right, faint moonlight glimmers on a shallow stream. A sense of dread and urgency fills your chest as you choose your path, but the lantern flickers, and the choice is yours alone.</p>
+        <div class="story-page" style="display: none;">
+            <p class="story-section">
+                A faint glow emerges ahead—a lantern hanging from a crooked tree branch. Beneath it, a parchment pinned to the bark reads: 
+                “Seek the lantern’s light, and the truth shall follow.” The ink is fresh, the handwriting eerily familiar.
+            </p>
+            <p class="story-section">
+                The path splits. To the left, a narrow trail leads into darkness. To the right, 
+                faint moonlight glimmers on a shallow stream. A sense of dread and urgency fills your chest as you choose your path, but the lantern flickers,
+                and the choice is yours alone.
+            </p>
         </div>
-        <div class="story-page">
-            <p class="story-section">As you proceed, whispers grow louder, forming words you cannot fully comprehend. They speak of secrets buried long ago and truths hidden in the shadows. The voice seems to know you, to recognize your innermost thoughts.</p>
-            <p class="story-section">Suddenly, the ground beneath you trembles. A figure emerges from the mist—cloaked, faceless, and holding an object wrapped in silk. It gestures for you to come closer. “The truth you seek lies within,” it whispers, placing the object at your feet before vanishing.</p>
-        </div>
-        <div class="story-page">
-            <p class="story-section">You unwrap the silk to reveal an ancient key, engraved with symbols you don’t recognize. The whispers fade, replaced by an overwhelming silence. Only the key remains, cold and heavy in your hand.</p>
-            <p class="story-section">Ahead, a door appears where none stood before. It is immense, carved into the stone, and marked with the same symbols as the key. You feel the weight of the decision pressing on you. Will you unlock the door and uncover the truth, or turn back and leave the mystery unsolved?</p>
+        <div class="story-page" style="display: none;">
+            <p class="story-section">
+                Click close after watching the video to continue your journey.
+            </p>
         </div>
     </div>
 
-    <!-- Navigation buttons -->
+    <!-- Navigation Buttons -->
     <button id="previous-button" class="big-button" onclick="showPreviousPage()" style="display: none;">← Previous</button>
     <button id="next-button" class="big-button" onclick="showNextPage()">Next →</button>
+    <button id="find-truth-button" class="big-button" onclick="findTruth()" style="display: none;">Find The Truth</button>
 
     <script>
         const pages = document.querySelectorAll('.story-page');
+        const findTruthButton = document.getElementById('find-truth-button');
         const nextButton = document.getElementById('next-button');
         const previousButton = document.getElementById('previous-button');
         let currentPage = 0;
 
-        // Initially hide all pages except the first
-        pages.forEach((page, index) => {
-            if (index !== 0) page.style.display = 'none';
-        });
+        // Initialize the story based on the URL fragment
+        if (window.location.hash === "#find-truth") {
+            // Jump to the "Find The Truth" section
+            currentPage = pages.length - 1;
+            pages.forEach((page, index) => {
+                page.style.display = index === currentPage ? "block" : "none";
+            });
+            nextButton.style.display = 'none';
+            previousButton.style.display = 'block';
+            findTruthButton.style.display = 'block';
+        } else {
+            // Start at the beginning of the story
+            pages.forEach((page, index) => {
+                page.style.display = index === 0 ? 'block' : 'none';
+            });
+        }
 
         function showNextPage() {
             if (currentPage < pages.length - 1) {
@@ -52,17 +76,11 @@
                 pages[currentPage].style.display = 'block';
             }
 
-            // Show the Previous button if we move to the second page or beyond
-            if (currentPage > 0) {
-                previousButton.style.display = 'block';
-            }
-
-            // Change Next button to Finish Reading on the last page
+            // Adjust button visibility
+            previousButton.style.display = currentPage > 0 ? 'block' : 'none';
             if (currentPage === pages.length - 1) {
-                nextButton.textContent = "Finish Reading";
-                nextButton.onclick = () => {
-                    window.location.href = "truth.html";
-                };
+                nextButton.style.display = 'none';
+                findTruthButton.style.display = 'block';
             }
         }
 
@@ -73,16 +91,14 @@
                 pages[currentPage].style.display = 'block';
             }
 
-            // Hide the Previous button on the first page
-            if (currentPage === 0) {
-                previousButton.style.display = 'none';
-            }
+            // Adjust button visibility
+            nextButton.style.display = currentPage < pages.length - 1 ? 'block' : 'none';
+            findTruthButton.style.display = 'none';
+            previousButton.style.display = currentPage > 0 ? 'block' : 'none';
+        }
 
-            // Reset Next button back to Next → if we're not on the last page
-            if (currentPage < pages.length - 1) {
-                nextButton.textContent = "Next →";
-                nextButton.onclick = showNextPage;
-            }
+        function findTruth() {
+            window.location.href = "truth.html";
         }
     </script>
 </body>

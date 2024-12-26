@@ -1,29 +1,38 @@
-/* General body styling */
+/* General styling */
 body {
     font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
     background: radial-gradient(circle at center, #1e1e1e, #000);
     color: #e0e0e0;
-    text-shadow: 0 0 5px #e0e0e0, 0 0 10px #e0e0e0;
-}
-
-/* Index page styles */
-/* ------------------- */
-
-/* Centered container for the index page */
-.index-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     text-align: center;
-    background: radial-gradient(circle, #2c2c2c, #1a1a1a);
+    flex-direction: column;
 }
+/* Index page styles */
+/* ------------------- */
+
+/* Content container styling */
+#index-container,
+#story-container,
+#continuation-container,
+#thank-you-container {
+    text-align: center;
+    max-width: 800px;
+}
+
 
 /* Title styling for the index page */
 .index-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
+}
+
+.thankyou-title {
     font-size: 3rem;
     margin-bottom: 20px;
     text-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
@@ -51,16 +60,19 @@ body {
 /* Story page styles */
 /* ------------------- */
 
-/* Sticky header for story and truth pages */
+/* Header styling */
 header {
-    position: sticky;
+    position: absolute;
     top: 0;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
     color: #ff5722;
     font-size: 1.5rem;
+    padding: 10px 0;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
+
 
 /* Story container styling */
 #story-container {
@@ -69,6 +81,14 @@ header {
     padding: 10px;
     line-height: 1.8;
 }
+
+/* Story page text */
+.story-section {
+    margin: 20px 0;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
 /* Previous button styling */
 #previous-button {
     position: fixed;
@@ -238,3 +258,4 @@ header {
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
+

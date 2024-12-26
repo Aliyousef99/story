@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>The Story Continues</header>
+    <div id="continuation-container">
+        <div class="story-page">
+            <p class="story-section">Alina stood frozen, torn between the book and the key. Her heart pounded, the weight of an unseen decision pressing on her. The book seemed to hum with an ancient energy, its secrets whispering promises of understanding and clarity. The key, on the other hand, was silent but no less compelling, its gleam suggesting a hidden door waiting to be unlocked. She reached out, hesitating for a moment, and then her fingers brushed against the key's cool surface.</p>
+            <p class="story-section">As soon as her hand closed around the key, the world shifted. The clearing faded, replaced by a dark corridor lit by flickering torches. The whispers were gone, replaced by a low hum that reverberated through the walls. At the end of the corridor stood a massive door, carved with intricate symbols that mirrored those on the key. Alina approached, her steps echoing in the emptiness, and inserted the key into the lock. With a deep groan, the door creaked open, revealing a vast chamber bathed in golden light.</p>
+        </div>
+        <div class="story-page" style="display: none;">
+            <p class="story-section">Inside, a figure stood waiting—a tall silhouette cloaked in flowing robes. Its face was obscured, but its presence was both comforting and unsettling. The figure gestured toward the center of the room, where a pool of shimmering liquid reflected the golden light. "The truth you seek lies here," the figure said, its voice resonating like a melody. Alina approached the pool, peering into its depths. At first, she saw only her own reflection, but as the surface rippled, images began to emerge—moments from her past, glimpses of her future, and fragments of a story she didn’t recognize but felt deeply connected to.</p>
+            <p class="story-section">The figure spoke again, its voice softer now. "The path is yours to choose. Take the truth you see, or step away and let the mystery remain." Alina's mind raced. The visions in the pool were captivating, but they felt incomplete, like pieces of a puzzle she wasn’t ready to solve. She glanced back at the figure, searching for guidance, but it remained silent, waiting for her decision.</p>
+        </div>
+        <div class="story-page" style="display: none;">
+            <p class="story-section">As the golden light dimmed and the chamber began to fade, Alina made her choice. Whether she reached into the pool to claim the truth or turned away to leave the mystery untouched is a story only she knows. The Whispering Path remained, its whispers calling to those brave enough to step forward, their own stories yet to be written.</p>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <button id="previous-button" class="big-button" onclick="showPreviousPage()" style="display: none;">← Previous</button>
+    <button id="next-button" class="big-button" onclick="showNextPage()">Next →</button>
+    <button id="the-end-button" class="big-button" onclick="goToThankYou()" style="display: none;">The End</button>
+
+    <script>
+        const pages = document.querySelectorAll('.story-page');
+        const nextButton = document.getElementById('next-button');
+        const previousButton = document.getElementById('previous-button');
+        const theEndButton = document.getElementById('the-end-button');
+        let currentPage = 0;
+
+        // Show the next page
+        function showNextPage() {
+            if (currentPage < pages.length - 1) {
+                pages[currentPage].style.display = 'none';
+                currentPage++;
+                pages[currentPage].style.display = 'block';
+            }
+
+            // Show the Previous button
+            if (currentPage > 0) {
+                previousButton.style.display = 'block';
+            }
+
+            // Show The End button on the last page
+            if (currentPage === pages.length - 1) {
+                nextButton.style.display = 'none';
+                theEndButton.style.display = 'block';
+            }
+        }
+
+        // Show the previous page
+        function showPreviousPage() {
+            if (currentPage > 0) {
+                pages[currentPage].style.display = 'none';
+                currentPage--;
+                pages[currentPage].style.display = 'block';
+            }
+
+            // Hide the Previous button on the first page
+            if (currentPage === 0) {
+                previousButton.style.display = 'none';
+            }
+
+            // Reset the navigation buttons
+            if (currentPage < pages.length - 1) {
+                nextButton.style.display = 'block';
+                theEndButton.style.display = 'none';
+            }
+        }
+
+        // Redirect to the thank you page
+        function goToThankYou() {
+            window.location.href = "thankyou.html";
+        }
+
+        // Initialize the first page
+        pages.forEach((page, index) => {
+            if (index !== 0) {
+                page.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -60,9 +60,9 @@
                 selectedOption = null; // Reset selection
             } else if (response === 'yes') {
                 if (selectedOption === 'real') {
-                    playVideo("https://www.youtube.com/embed/17KmNrG9pE4?autoplay=1"); // Play the "This is Real" video
+                    playVideo("https://www.youtube.com/embed/17KmNrG9pE4?autoplay=1"); // Play "This is Real" video
                 } else if (selectedOption === 'ai') {
-                    playVideo("https://www.youtube.com/embed/iCMcSx1as3c?autoplay=1"); // Play the "This is AI" video
+                    playVideo("https://www.youtube.com/embed/iCMcSx1as3c?autoplay=1"); // Play "This is AI" video
                 }
             }
         }
@@ -75,17 +75,18 @@
             videoModal.classList.add('show');
         }
 
-        // Close the video modal
+        // Close the video modal and continue the story
         function closeVideo() {
             const videoModal = document.getElementById('video-modal');
             const videoFrame = document.getElementById('video-frame');
             videoFrame.src = ""; // Stop the video
             videoModal.classList.remove('show');
+            window.location.href = "continuation.html"; // Redirect to the story continuation
         }
 
         // Go back to the story
         function goBackToStory() {
-            window.location.href = "story.html";
+            window.location.href = "story.html#find-truth"; // Redirect to the "Find The Truth" section
         }
     </script>
 </body>
