@@ -61,6 +61,11 @@
         // Handle option selection
         function chooseOption(option) {
             selectedOption = option;
+
+            // Reset button visibility when a new choice is made
+            document.getElementById('close-button').style.display = 'none';
+            document.getElementById('try-again-button').style.display = 'none';
+
             const modal = document.getElementById('confirmation-modal');
             modal.classList.add('show');
         }
