@@ -36,13 +36,26 @@
     <!-- Video modal -->
     <div id="video-modal" class="modal">
         <div class="modal-content">
-            <iframe id="video-frame" width="560" height="315" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            <button class="big-button" onclick="closeVideo()">Close</button>
+            <div id="player"></div>
+            <button id="close-button" class="big-button" onclick="closeVideo()" style="display: none;">Close</button>
         </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script>
         let selectedOption = null;
+        let player;
+
+        // Initialize the YouTube player when the API is ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '315',
+                width: '560',
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
 
         // Handle option selection
         function chooseOption(option) {
@@ -60,28 +73,33 @@
                 selectedOption = null; // Reset selection
             } else if (response === 'yes') {
                 if (selectedOption === 'real') {
-                    playVideo("https://www.youtube.com/embed/17KmNrG9pE4?autoplay=1"); // Play "This is Real" video
+                    playVideo("https://www.youtube.com/embed/b02S5vvIQhE");
                 } else if (selectedOption === 'ai') {
-                    playVideo("https://www.youtube.com/embed/iCMcSx1as3c?autoplay=1"); // Play "This is AI" video
+                    playVideo("https://www.youtube.com/embed/iCMcSx1as3c");
                 }
             }
         }
 
         // Play the video
         function playVideo(videoUrl) {
+            player.loadVideoByUrl(videoUrl);
             const videoModal = document.getElementById('video-modal');
-            const videoFrame = document.getElementById('video-frame');
-            videoFrame.src = videoUrl; // Set the video URL
             videoModal.classList.add('show');
+        }
+
+        // Track when the video ends
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                document.getElementById('close-button').style.display = 'block'; // Show Close button
+            }
         }
 
         // Close the video modal and continue the story
         function closeVideo() {
             const videoModal = document.getElementById('video-modal');
-            const videoFrame = document.getElementById('video-frame');
-            videoFrame.src = ""; // Stop the video
+            player.stopVideo(); // Stop the video
             videoModal.classList.remove('show');
-            window.location.href = "continuation.html"; // Redirect to the story continuation
+            window.location.href = "continuation.html"; // Redirect to continuation
         }
 
         // Go back to the story
