@@ -60,12 +60,10 @@
 
         // Handle option selection
         function chooseOption(option) {
+            // Reset modal and buttons
+            resetButtons();
+
             selectedOption = option;
-
-            // Reset button visibility when a new choice is made
-            document.getElementById('close-button').style.display = 'none';
-            document.getElementById('try-again-button').style.display = 'none';
-
             const modal = document.getElementById('confirmation-modal');
             modal.classList.add('show');
         }
@@ -109,8 +107,17 @@
             }
         }
 
+        // Reset buttons
+        function resetButtons() {
+            const closeButton = document.getElementById('close-button');
+            const tryAgainButton = document.getElementById('try-again-button');
+            closeButton.style.display = 'none';
+            tryAgainButton.style.display = 'none';
+        }
+
         // Close the video modal and continue the story
         function closeVideo() {
+            resetButtons();
             const videoModal = document.getElementById('video-modal');
             player.stopVideo(); // Stop the video
             videoModal.classList.remove('show');
@@ -119,6 +126,7 @@
 
         // Retry option for "This is AI"
         function tryAgain() {
+            resetButtons();
             const videoModal = document.getElementById('video-modal');
             player.stopVideo(); // Stop the video
             videoModal.classList.remove('show');
