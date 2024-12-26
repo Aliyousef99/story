@@ -1,23 +1,26 @@
 /* General styling */
 body {
     font-family: 'Courier New', Courier, monospace;
+    font-size: 16px; /* Adjust for consistent scaling */
+    line-height: 1.6; /* Maintain consistent spacing */
     margin: 0;
     padding: 0;
     background: radial-gradient(circle at center, #1e1e1e, #000);
     color: #e0e0e0;
+    text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    text-align: center;
-    flex-direction: column;
 }
+
+
 /* Index page styles */
 /* ------------------- */
 
 /* Content container styling */
 #index-container,
-#story-container,
 #continuation-container,
 #thank-you-container {
     text-align: center;
@@ -76,18 +79,35 @@ header {
 
 /* Story container styling */
 #story-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 10px;
-    line-height: 1.8;
+    width: 80%; /* Relative to screen size */
+    max-width: 800px; /* Cap width for larger screens */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Story page text */
 .story-section {
-    margin: 20px 0;
-    font-size: 1.2rem;
+    margin: 20px auto;
     line-height: 1.6;
+    font-size: 1.2rem;
+    max-width: 700px; /* Ensures consistent layout */
+    text-align: justify; /* Aligns text neatly */
 }
+
+/* Normalize styles across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Prevents overflow issues */
+}
+
 
 /* Previous button styling */
 #previous-button {
@@ -187,15 +207,15 @@ header {
 
 /* Shared button styles */
 .big-button {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     padding: 15px 30px;
     margin: 10px;
     border: 2px solid #ff5722;
     background: transparent;
     color: #ff5722;
-    cursor: pointer;
     border-radius: 8px;
     text-shadow: 0 0 5px #ff5722, 0 0 10px #ff5722;
+    cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
@@ -204,6 +224,7 @@ header {
     box-shadow: 0 0 10px #ff5722, 0 0 20px #ff5722;
     color: #ffffff;
 }
+
 
 /* Go back button styling */
 #back-to-story {
