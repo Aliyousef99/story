@@ -38,6 +38,7 @@
         <div class="modal-content">
             <div id="player"></div>
             <button id="close-button" class="big-button" onclick="closeVideo()" style="display: none;">Close</button>
+            <button id="try-again-button" class="big-button" onclick="tryAgain()" style="display: none;">Try Again</button>
         </div>
     </div>
 
@@ -73,9 +74,9 @@
                 selectedOption = null; // Reset selection
             } else if (response === 'yes') {
                 if (selectedOption === 'real') {
-                    playVideo("https://www.youtube.com/embed/b02S5vvIQhE");
+                    playVideo("https://www.youtube.com/embed/b02S5vvIQhE"); // Replace with "This is Real" video URL
                 } else if (selectedOption === 'ai') {
-                    playVideo("https://www.youtube.com/embed/iCMcSx1as3c");
+                    playVideo("https://www.youtube.com/embed/17KmNrG9pE4"); // Replace with "This is AI" video URL
                 }
             }
         }
@@ -89,8 +90,17 @@
 
         // Track when the video ends
         function onPlayerStateChange(event) {
+            const closeButton = document.getElementById('close-button');
+            const tryAgainButton = document.getElementById('try-again-button');
+
             if (event.data === YT.PlayerState.ENDED) {
-                document.getElementById('close-button').style.display = 'block'; // Show Close button
+                if (selectedOption === 'real') {
+                    closeButton.style.display = 'block';
+                    tryAgainButton.style.display = 'none';
+                } else if (selectedOption === 'ai') {
+                    closeButton.style.display = 'none';
+                    tryAgainButton.style.display = 'block';
+                }
             }
         }
 
@@ -100,6 +110,14 @@
             player.stopVideo(); // Stop the video
             videoModal.classList.remove('show');
             window.location.href = "continuation.html"; // Redirect to continuation
+        }
+
+        // Retry option for "This is AI"
+        function tryAgain() {
+            const videoModal = document.getElementById('video-modal');
+            player.stopVideo(); // Stop the video
+            videoModal.classList.remove('show');
+            selectedOption = null; // Reset the option to force a new choice
         }
 
         // Go back to the story
